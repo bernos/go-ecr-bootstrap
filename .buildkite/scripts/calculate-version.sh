@@ -17,7 +17,7 @@ current_version=$(git describe                        \
                       || echo "none")
 
 if [ "${current_version}" = "none" ]; then
-    next_version="0.0.0"
+    next_version="0.1.0"
 else
     current_version=${current_version:1}
 

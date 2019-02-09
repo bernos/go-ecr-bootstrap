@@ -1,7 +1,7 @@
 GIT_BRANCH     ?= $(shell git rev-parse --abbrev-ref HEAD)
 VERSION         = $(shell ./.buildkite/scripts/calculate-version.sh)
-DOCKER_REGISTRY = 987872074697.dkr.ecr.ap-southeast-2.amazonaws.com
-DOCKER_IMAGE    = $(DOCKER_REGISTRY)/bmcmahon/go-docker-stencil
+DOCKER_REGISTRY = 1234566789.dkr.ecr.ap-southeast-2.amazonaws.com
+DOCKER_IMAGE    = $(DOCKER_REGISTRY)/bernos/go-ecr-bootstrap
 
 docker-build:
 	docker build --tag $(DOCKER_IMAGE):$(VERSION) .
