@@ -1,0 +1,25 @@
+{
+    "Version": "2008-10-17",
+    "Statement": [
+      {
+        "Sid": "ReadAccess",
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": "*"
+        },
+        "Condition": {
+          "ForAllValues:StringEquals": {
+            "aws:PrincipalOrgID": [
+              "o-zfzjsnz1xo",
+              "o-5zywhtkcf6"
+            ]
+          }
+        },
+        "Action": [
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:BatchGetImage",
+          "ecr:BatchCheckLayerAvailability"
+        ]
+      }
+    ]
+}

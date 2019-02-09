@@ -1,0 +1,37 @@
+env:
+  GIT_BRANCH: ${BUILDKITE_BRANCH}
+
+steps:
+  - label: ":docker: Build & Test"
+    command: "make docker-build"
+    agents:
+      queue: "artefacts:cicd"
+
+  - wait
+
+  - block: ":docker: Push pre-release image"
+    branches: "!master"
+    prompt: "Push pre-release docker image to ECR?"
+
+  - label: ":docker: Push pre-release docker image"
+    command: "make docker-push"
+    branches: "!master"
+    agents:
+      queue: "artefacts:cicd"
+
+  - label: ":docker: Push docker image"
+    command: "make docker-push"
+    branches: "master"
+    agents:
+      queue: "artefacts:cicd"
+
+  - wait
+
+  - label: ":github: Tag release"
+    command: "make gh-release"
+    branches: "master"
+    agents:
+      queue: "artefacts:cicd"
+  
+
+

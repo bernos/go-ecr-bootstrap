@@ -1,0 +1,31 @@
+{
+    "rules": [
+      {
+        "rulePriority": 1,
+        "description": "Keep up to 20 non-master branch images",
+        "selection": {
+          "tagStatus": "tagged",
+          "tagPrefixList": [
+            "branch"
+          ],
+          "countType": "imageCountMoreThan",
+          "countNumber": 20
+        },
+        "action": {
+          "type": "expire"
+        }
+      },
+      {
+        "rulePriority": 2,
+        "description": "Keep up to 30 total images (implies up to 10 master images)",
+        "selection": {
+          "tagStatus": "any",
+          "countType": "imageCountMoreThan",
+          "countNumber": 30
+        },
+        "action": {
+          "type": "expire"
+        }
+      }
+    ]
+}
